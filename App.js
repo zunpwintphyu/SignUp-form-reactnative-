@@ -5,7 +5,8 @@ import * as Font from "expo-font";
 export default class App extends React.Component {
   constructor(props){ 
   super(props);
-   this.state= {switchValue:false,
+   this.state= {
+                switchValue:false,
                 fontLoaded: false,
                 name: ' ',
                 password: ' ',
@@ -17,7 +18,7 @@ export default class App extends React.Component {
   }
   
   toggleSwitch = (value) => {
-    this.setState({switchValue})
+    this.setState({switchValue:value})
  }
  clearText(){
   this.setState({name:''}),
@@ -60,14 +61,14 @@ export default class App extends React.Component {
           <Picker.Item label="Team Leader" value="TeamLeader" />
           <Picker.Item label="Technical Support" value="TechnicalSupport" />
         </Picker>
+        <Text style={styles.text}>Gender</Text>
         <View style={styles.switch}>
-         <Text style={styles.text}>Gender</Text>
-         <Text>{this.state.switchValue?'Male':'Female'}</Text>
          <Switch
           onValueChange = {this.toggleSwitch}
           thumbColor="black"
           
-          value = {this.state.switchValue}/>
+          value={this.state.switchValue}/>
+          <Text style={styles.switchtext}>{this.state.switchValue?'Male':'Female'}</Text>
         </View>
         <Text style={styles.text}>User Name</Text>
         <TextInput
@@ -133,8 +134,16 @@ const styles = StyleSheet.create({
     color:'#990DEF',
     fontFamily:'Dosis-Bold',
   },
-  switch:{
+  switch:{ 
+    flexDirection:'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-  }
+  },
+  switchtext:{
+    width:'100%',
+    paddingLeft:5,
+    paddingTop:2, 
+    fontSize:10,
+  },
+  
 });
